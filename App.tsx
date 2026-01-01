@@ -299,24 +299,6 @@ export default function App() {
     }
   };
 
-  const copyOutput = () => {
-    if (analysis.resultHtml) {
-        // Create a temporary container to extract text or just copy innerHTML? 
-        // Typically users want the text content formatted or the HTML. 
-        // The original code copied the displayed text.
-        const outputDiv = document.getElementById("aiOutput");
-        if (outputDiv) {
-            const range = document.createRange();
-            range.selectNode(outputDiv);
-            window.getSelection()?.removeAllRanges();
-            window.getSelection()?.addRange(range);
-            document.execCommand("copy");
-            window.getSelection()?.removeAllRanges();
-            alert("已复制到剪贴板");
-        }
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col relative text-stone-700">
       {/* Navigation */}
@@ -578,51 +560,7 @@ export default function App() {
                     </div>
                 </div>
             </div>
-
-            {/* Bottom Section: Output */}
-            <div className="bg-stone-900 p-6 rounded-2xl shadow-lg border border-stone-800 text-stone-300 flex flex-col h-[600px] relative overflow-hidden">
-                <div className="flex justify-between items-center mb-3">
-                    <label className="block text-base font-bold text-orange-400 flex items-center">
-                        <span className="bg-orange-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
-                        <span>AI 分析报告</span>
-                    </label>
-                    <div className="flex gap-2">
-                        <button 
-                          onClick={() => setAnalysis(prev => ({ ...prev, resultHtml: null, metaData: null, error: null }))}
-                          className="text-xs bg-stone-800 hover:bg-stone-700 text-stone-400 px-3 py-1.5 rounded-lg transition border border-stone-700"
-                        >
-                            清空
-                        </button>
-                        <button 
-                          onClick={copyOutput}
-                          className="text-xs bg-stone-700 hover:bg-stone-600 text-white px-3 py-1.5 rounded-lg transition border border-stone-600 hover:border-stone-500 flex items-center"
-                        >
-                            <span className="mr-1"><Icons.Copy /></span> 复制
-                        </button>
-                    </div>
-                </div>
-                <div className="relative flex-grow bg-stone-800/50 border border-stone-700 rounded-xl overflow-hidden">
-                    <div id="aiOutput" className="w-full h-full overflow-y-auto p-4 text-sm text-stone-200 leading-relaxed">
-                        {analysis.resultHtml ? (
-                          <div className="report-fade-in" dangerouslySetInnerHTML={{ __html: analysis.resultHtml }} />
-                        ) : analysis.error ? (
-                          <div className="flex flex-col items-center justify-center h-full text-red-400 space-y-4">
-                             <p>❌ {analysis.error}</p>
-                          </div>
-                        ) : (
-                           <div className="flex flex-col items-center justify-center h-full text-stone-500 space-y-4">
-                              <div className="w-16 h-16 bg-stone-800 rounded-full flex items-center justify-center">
-                                  <div className="text-stone-600 text-2xl"><Icons.Sparkles /></div>
-                              </div>
-                              <div className="text-center">
-                                  <p className="font-medium mb-1">等待 AI 分析...</p>
-                                  <p className="text-xs max-w-[200px] opacity-70">点击上方“AI 视频深度拆解”按钮，生成可视化数据报告。</p>
-                              </div>
-                          </div>
-                        )}
-                    </div>
-                </div>
-            </div>
+            {/* Report section removed */}
         </div>
       </main>
 
