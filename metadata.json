@@ -1,0 +1,5 @@
+{
+  "name": "AI Viral Video Deconstructor",
+  "description": "An AI-powered tool to analyze and deconstruct viral videos using Gemini and OpenAI models.",
+  "requestFramePermissions": []
+}
